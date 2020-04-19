@@ -132,7 +132,7 @@ namespace Celeste
         public int InputMoveX => (int) Input.GetAxis("Horizontal");
 
         public int InputMoveY => (int) Input.GetAxis("Vertical");
-        public bool InputDash => Input.GetButton("Fire1");
+        public bool InputDashPressed => Input.GetButtonDown("Fire1");
         public bool InputGrab => Input.GetButton("Fire3");
         public bool InputJump => Input.GetButton("Jump");
         public bool InputJumpPressed => Input.GetButtonDown("Jump");
@@ -277,6 +277,7 @@ namespace Celeste
         public const int StPickup = 8;
         public const int StDreamDash = 9;
         public const int StSummitLaunch = 10;
+        /*
         public const int StDummy = 11;
         public const int StIntroWalk = 12;
         public const int StIntroJump = 13;
@@ -285,8 +286,9 @@ namespace Celeste
         public const int StBirdDashTutorial = 16;
         public const int StFrozen = 17;
         public const int StReflectionFall = 18;
+        */
         public const int StStarFly = 19;
-        public const int StTempleFall = 20;
+        // public const int StTempleFall = 20;
         public const int StCassetteFly = 21;
         public const int StAttract = 22;
 
@@ -462,18 +464,18 @@ namespace Celeste
             StateMachine.SetCallbacks(StPickup, null, PickupCoroutine, null, null);
             StateMachine.SetCallbacks(StDreamDash, DreamDashUpdate, null, DreamDashBegin, DreamDashEnd);
             StateMachine.SetCallbacks(StSummitLaunch, SummitLaunchUpdate, null, SummitLaunchBegin, null);
-            StateMachine.SetCallbacks(StDummy, DummyUpdate, null, DummyBegin, null);
-            StateMachine.SetCallbacks(StIntroWalk, null, IntroWalkCoroutine, null, null);
-            StateMachine.SetCallbacks(StIntroJump, null, IntroJumpCoroutine, null, null);
-            StateMachine.SetCallbacks(StIntroRespawn, null, null, IntroRespawnBegin, IntroRespawnEnd);
-            StateMachine.SetCallbacks(StIntroWakeUp, null, IntroWakeUpCoroutine, null, null);
-            StateMachine.SetCallbacks(StTempleFall, TempleFallUpdate, TempleFallCoroutine);
-            StateMachine.SetCallbacks(StReflectionFall, ReflectionFallUpdate, ReflectionFallCoroutine, ReflectionFallBegin, ReflectionFallEnd);
-            StateMachine.SetCallbacks(StBirdDashTutorial, BirdDashTutorialUpdate, BirdDashTutorialCoroutine, BirdDashTutorialBegin, null);
-            StateMachine.SetCallbacks(StFrozen, FrozenUpdate, null, null, null);
-            StateMachine.SetCallbacks(StStarFly, StarFlyUpdate, StarFlyCoroutine, StarFlyBegin, StarFlyEnd);
-            StateMachine.SetCallbacks(StCassetteFly, CassetteFlyUpdate, CassetteFlyCoroutine, CassetteFlyBegin, CassetteFlyEnd);
-            StateMachine.SetCallbacks(StAttract, AttractUpdate, null, AttractBegin, AttractEnd);
+            // StateMachine.SetCallbacks(StDummy, DummyUpdate, null, DummyBegin, null);
+            // StateMachine.SetCallbacks(StIntroWalk, null, IntroWalkCoroutine, null, null);
+            // StateMachine.SetCallbacks(StIntroJump, null, IntroJumpCoroutine, null, null);
+            // StateMachine.SetCallbacks(StIntroRespawn, null, null, IntroRespawnBegin, IntroRespawnEnd);
+            // StateMachine.SetCallbacks(StIntroWakeUp, null, IntroWakeUpCoroutine, null, null);
+            // StateMachine.SetCallbacks(StTempleFall, TempleFallUpdate, TempleFallCoroutine);
+            // StateMachine.SetCallbacks(StReflectionFall, ReflectionFallUpdate, ReflectionFallCoroutine, ReflectionFallBegin, ReflectionFallEnd);
+            // StateMachine.SetCallbacks(StBirdDashTutorial, BirdDashTutorialUpdate, BirdDashTutorialCoroutine, BirdDashTutorialBegin, null);
+            // StateMachine.SetCallbacks(StFrozen, FrozenUpdate, null, null, null);
+            // StateMachine.SetCallbacks(StStarFly, StarFlyUpdate, StarFlyCoroutine, StarFlyBegin, StarFlyEnd);
+            // StateMachine.SetCallbacks(StCassetteFly, CassetteFlyUpdate, CassetteFlyCoroutine, CassetteFlyBegin, CassetteFlyEnd);
+            // StateMachine.SetCallbacks(StAttract, AttractUpdate, null, AttractBegin, AttractEnd);
             Add(StateMachine);
 
             // other stuff
@@ -569,8 +571,8 @@ namespace Celeste
             // cancel special idle sounds if the anim changed
             Sprite.OnChange = (last, next) =>
             {
-                if ((last == "idleB" || last == "idleC") && next != null && !next.StartsWith("idle") && idleSfx != null)
-                    Audio.Stop(idleSfx);
+                // if ((last == "idleB" || last == "idleC") && next != null && !next.StartsWith("idle") && idleSfx != null)
+                //     Audio.Stop(idleSfx);
             };
 
             Add(reflection = new MirrorReflection());
@@ -658,11 +660,13 @@ namespace Celeste
         }
         */
 
+        /*
         public override void SceneEnd(Scene scene)
         {
             base.SceneEnd(scene);
             Audio.Stop(conveyorLoopSfx);
         }
+        */
 
         #endregion
 
@@ -766,8 +770,8 @@ namespace Celeste
                     idleTimer = 0;
 
                 //Underwater music
-                if (!Dead)
-                    Audio.MusicUnderwater = UnderwaterMusicCheck();
+                // if (!Dead)
+                //     Audio.MusicUnderwater = UnderwaterMusicCheck();
 
                 //Just respawned
                 if (JustRespawned && Speed != Vector2.zero)
@@ -2950,10 +2954,10 @@ namespace Celeste
             {
                 if (InputGrab && !IsTired && !Ducking)
                 {
-                    //Grabbing Holdables
-                    foreach (Holdable hold in Scene.Tracker.GetComponents<Holdable>())
-                        if (hold.Check(this) && Pickup(hold))
-                            return StPickup;
+                    // //Grabbing Holdables
+                    // foreach (Holdable hold in Scene.Tracker.GetComponents<Holdable>())
+                    //     if (hold.Check(this) && Pickup(hold))
+                    //         return StPickup;
 
                     //Climbing
                     if (Speed.y >= 0 && Math.Sign(Speed.x) != -(int)Facing)
@@ -3022,9 +3026,9 @@ namespace Celeste
             }
             else
             {
-                //Throw
-                if (!InputGrab && minHoldTimer <= 0)
-                    Throw();
+                // //Throw
+                // if (!InputGrab && minHoldTimer <= 0)
+                //     Throw();
 
                 //Ducking
                 if (!Ducking && onGround && InputMoveY == 1 && Speed.y >= 0)
@@ -3319,8 +3323,10 @@ namespace Celeste
                 wallBoosting = true;
 
                 if (conveyorLoopSfx == null)
-                    conveyorLoopSfx = Audio.Play(Sfxs.game_09_conveyor_activate, Position, "end", 0);
-                Audio.Position(conveyorLoopSfx, Position);
+                {
+                    // conveyorLoopSfx = Audio.Play(Sfxs.game_09_conveyor_activate, Position, "end", 0);
+                }
+                // Audio.Position(conveyorLoopSfx, Position);
                 
                 Speed.y = Calc.Approach(Speed.y, WallBoosterSpeed, WallBoosterAccel * Time.deltaTime);
                 LiftSpeed = Vector2.up * Math.Max(Speed.y, WallBoosterLiftSpeed);
@@ -4156,6 +4162,7 @@ namespace Celeste
 
         private float? launchApproachX;
 
+        /*
         public Vector2 ExplodeLaunch(Vector2 from, bool snapUp = true)
         {
             // Input.Rumble(RumbleStrength.Strong, RumbleLength.Medium);
@@ -4226,6 +4233,7 @@ namespace Celeste
             dashCooldownTimer = DashCooldown;
             StateMachine.State = StLaunch;
         }
+        */
 
         private void LaunchBegin()
         {
@@ -4485,6 +4493,7 @@ namespace Celeste
 
         #endregion
 
+        /*
         #region Star Fly State
 
         private const float StarFlyTransformDeccel = 1000f;
@@ -4854,7 +4863,9 @@ namespace Celeste
         }
 
         #endregion
+        */
 
+        /*
         #region Attract State
 
         private Vector2 attractTo;
@@ -4902,7 +4913,9 @@ namespace Celeste
         }
 
         #endregion
+        */
 
+        /*
         #region Dummy State
 
         public bool DummyMoving = false;
@@ -5070,7 +5083,9 @@ namespace Celeste
         }
 
         #endregion
+        */
 
+        /*
         #region Frozen State
         
         private int FrozenUpdate()
@@ -5079,7 +5094,9 @@ namespace Celeste
         }
 
         #endregion
+        */
 
+        /*
         #region Temple Fall State
         
         private int TempleFallUpdate()
@@ -5132,7 +5149,9 @@ namespace Celeste
         }
 
         #endregion
+        */
 
+        /*
         #region Reflection Fall State
 
         private void ReflectionFallBegin()
@@ -5231,7 +5250,9 @@ namespace Celeste
         }
 
         #endregion
+        */
 
+        /*
         #region Intro Walk State
 
         private Facings IntroWalkDirection;
@@ -5267,7 +5288,9 @@ namespace Celeste
         }
 
         #endregion
+        */
 
+        /*
         #region Intro Jump State
 
         private IEnumerator IntroJumpCoroutine()
@@ -5360,7 +5383,9 @@ namespace Celeste
         }
 
         #endregion
+        */
 
+        /*
         #region Intro Wake Up State
 
         private IEnumerator IntroWakeUpCoroutine()
@@ -5375,7 +5400,9 @@ namespace Celeste
         }
 
         #endregion
+        */
 
+        /*
         #region Intro Respawn State
 
         private Tween respawnTween;
@@ -5420,7 +5447,9 @@ namespace Celeste
         }
 
         #endregion
+        */
 
+        /*
         #region Bird Dash Tutorial
 
         private void BirdDashTutorialBegin()
@@ -5534,6 +5563,7 @@ namespace Celeste
         }
 
         #endregion
+        */
 
         #region Chaser State Tracking
 
@@ -5543,7 +5573,6 @@ namespace Celeste
             AddChaserStateSound(sound, param, value);
             return Audio.Play(sound, Center, param, value);
         }
-        */
 
         public void Loop(SoundSource sfx, string sound)
         {
@@ -5559,6 +5588,7 @@ namespace Celeste
                 sfx.Stop();
             }
         }
+        */
 
         private void AddChaserStateSound(string sound, ChaserStateSound.Actions action)
         {
@@ -5568,7 +5598,7 @@ namespace Celeste
         private void AddChaserStateSound(string sound, string param = null, float value = 0, ChaserStateSound.Actions action = ChaserStateSound.Actions.Oneshot)
         {
             string eventName = null;
-            Sfxs.MadelineToBadelineSound.TryGetValue(sound, out eventName);
+            // Sfxs.MadelineToBadelineSound.TryGetValue(sound, out eventName);
 
             if (eventName != null)
                 activeSounds.Add(new ChaserStateSound() { Event = eventName, Parameter = param, ParameterValue = value, Action = action });
