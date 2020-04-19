@@ -58,6 +58,13 @@ public class Movement : MonoBehaviour
         float yRaw = Input.GetAxisRaw("Vertical");
         Vector2 dir = new Vector2(x, y);
 
+        if (coll.onWall && 0 < rb.velocity.y)
+        {
+            if (coll.onRightWall) dir = new Vector2(Mathf.Min(0, dir.x), dir.y);
+            if (coll.onLeftWall) dir = new Vector2(Mathf.Max(0, dir.x), dir.y);
+
+        }
+
         Walk(dir);
         anim.SetHorizontalMovement(x, y, rb.velocity.y);
 
@@ -98,7 +105,7 @@ public class Movement : MonoBehaviour
 
         if(coll.onWall && !coll.onGround)
         {
-            if (x != 0 && !wallGrab)
+            if (x != 0 && !wallGrab && rb.velocity.y <= 0)
             {
                 wallSlide = true;
                 WallSlide();
