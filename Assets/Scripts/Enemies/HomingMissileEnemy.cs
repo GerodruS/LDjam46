@@ -37,7 +37,10 @@ public class HomingMissileEnemy : MonoBehaviour
     private void Start()
     {
         _rigidbody2D.AddForce(Vector2.right * force);
+    }
 
+    private void OnEnable()
+    {
         if (_light2D != null)
         {
             StartCoroutine(SpawnCoroutine());
