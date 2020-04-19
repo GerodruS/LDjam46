@@ -13,7 +13,7 @@ public class EnemyActivationTrigger : MonoBehaviour
     {
         // Debug.Log($"GameOverTrigger.OnCollisionEnter2D other.gameObject={other.gameObject.name}");
 
-        if (!waitForPlayer && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (!waitForPlayer && other.gameObject == enemy.gameObject)
         {
             enemy.target = target;
             enemy.force = force;

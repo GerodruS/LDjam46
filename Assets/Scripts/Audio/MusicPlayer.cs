@@ -47,5 +47,6 @@ public class MusicPlayer : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         _audioSource = GetComponent<AudioSource>();
+        _audioSource.loop = true;
     }
 }
