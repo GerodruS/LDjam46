@@ -22,6 +22,8 @@ public class StartFinishAnimation : MonoBehaviour
 
     public IEnumerator FinishAnimationCoroutine()
     {
+        Time.timeScale = 0;
+
         if (finished) yield break;
 
         finished = true;
@@ -37,7 +39,7 @@ public class StartFinishAnimation : MonoBehaviour
             spriteMask.transform.localScale = new Vector3(scale, scale, 1);
             spriteMask.transform.position = target.position;
             yield return null;
-            time -= Time.deltaTime;
+            time -= Time.unscaledDeltaTime;
         }
     }
 
@@ -54,6 +56,8 @@ public class StartFinishAnimation : MonoBehaviour
 
     private IEnumerator StartAnimationCoroutine()
     {
+        Time.timeScale = 1;
+
         root.SetActive(true);
 
         var player = FindObjectOfType<Movement>();
@@ -66,7 +70,7 @@ public class StartFinishAnimation : MonoBehaviour
             spriteMask.transform.localScale = new Vector3(scale, scale, 1);
             spriteMask.transform.position = target.position;
             yield return null;
-            time -= Time.deltaTime;
+            time -= Time.unscaledDeltaTime;
         }
 
         root.SetActive(false);
