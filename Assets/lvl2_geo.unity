@@ -52702,8 +52702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostsParent: {fileID: 234361389}
-  trailColor: {r: 1, g: 0.36320752, b: 0.60256857, a: 1}
-  fadeColor: {r: 1, g: 0.36320752, b: 0.60256857, a: 0}
+  trailColor: {r: 0.70980394, g: 0.8352942, b: 0.97647065, a: 1}
+  fadeColor: {r: 0.4901961, g: 0.63529414, b: 0.8000001, a: 0}
   ghostInterval: 0.05
   fadeTime: 0.5
 --- !u!1001 &245057838

@@ -44578,8 +44578,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostsParent: {fileID: 234361389}
-  trailColor: {r: 1, g: 0.36320752, b: 0.60256857, a: 1}
-  fadeColor: {r: 1, g: 0.36320752, b: 0.60256857, a: 0}
+  trailColor: {r: 0.68235296, g: 0.8980393, b: 0.9960785, a: 1}
+  fadeColor: {r: 0.4666667, g: 0.7058824, b: 0.9215687, a: 0}
   ghostInterval: 0.05
   fadeTime: 0.5
 --- !u!1001 &258923255
