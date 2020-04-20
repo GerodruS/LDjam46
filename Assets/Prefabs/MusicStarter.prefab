@@ -55,9 +55,14 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 9d8a4b8694443764dbf0fdd33f901ce6, type: 3}
     - {fileID: 8300000, guid: 9f1a409c63d4182409949af0c59940e2, type: 3}
     - {fileID: 8300000, guid: 39f2224bef264b0459a2509cc1ddc510, type: 3}
+    - {fileID: 8300000, guid: f9c65e3711d978649bb3dc18aee23dec, type: 3}
+    - {fileID: 8300000, guid: 7abd8817d1a792e46b51bc5ce2bf493d, type: 3}
+    - {fileID: 8300000, guid: 0e5947b8600701f40ab9d15e0b4448d8, type: 3}
     jump:
     - {fileID: 8300000, guid: 0e7e1795bbb4b664c8af551cc6d5208a, type: 3}
     - {fileID: 8300000, guid: 5bdb76c2fb415af4c913d86482da5d09, type: 3}
+    - {fileID: 8300000, guid: 5136069caf162604eae1301eecf95f82, type: 3}
+    - {fileID: 8300000, guid: 68ec469292a11814e98d6f153c9f2e5d, type: 3}
     step:
     - {fileID: 8300000, guid: 3d84c230e3fb7284186d2b6f226613a9, type: 3}
     win:
